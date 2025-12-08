@@ -195,7 +195,7 @@ const TopBar: React.FC<ITopBarProps> = ({ currentDojo }: ITopBarProps) => {
               {/* Timed Challenge Button */}
               {showTimedChallenge && (
                 <Link
-                  href={`/${currentDojo}/timed-challenge`}
+                  href={`/${currentDojo}/blitz`}
                   className='flex-1 max-w-sm'
                 >
                   <button
