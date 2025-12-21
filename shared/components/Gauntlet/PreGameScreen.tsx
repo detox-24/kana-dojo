@@ -37,6 +37,7 @@ interface PreGameScreenProps {
   setRepetitions: (reps: RepetitionCount) => void;
   pickModeSupported: boolean;
   onStart: () => void;
+  onCancel?: () => void; // Optional callback to handle back/cancel in modal mode
 }
 
 const difficultyIcons: Record<GauntletDifficulty, React.ReactNode> = {
@@ -57,7 +58,8 @@ export default function PreGameScreen({
   repetitions,
   setRepetitions,
   pickModeSupported,
-  onStart
+  onStart,
+  onCancel
 }: PreGameScreenProps) {
   const { playClick } = useClick();
   const router = useRouter();
@@ -66,6 +68,18 @@ export default function PreGameScreen({
 
   // Check if we're on the gauntlet route
   const isGauntletRoute = pathname?.includes('/gauntlet') ?? false;
+
+  // Handle back button - close modal if in modal mode, navigate if on route
+  const handleBack = () => {
+    playClick();
+    if (onCancel) {
+      // In modal mode - just close the modal
+      onCancel();
+    } else {
+      // On route - navigate back to dojo
+      router.push(`/${dojoType}`);
+    }
+  };
 
   const totalQuestions = itemsCount * repetitions;
   const estimatedMinutes = Math.ceil((totalQuestions * 3) / 60);
@@ -302,21 +316,19 @@ export default function PreGameScreen({
 
           {/* Action Buttons */}
           <div className='flex flex-row items-center justify-center gap-2 pt-2 md:gap-4'>
-            <Link href={`/${dojoType}`} className='w-1/2'>
-              <button
-                className={clsx(
-                  'flex h-12 w-full flex-row items-center justify-center gap-2 px-2 sm:px-6',
-                  'bg-[var(--secondary-color)] text-[var(--background-color)]',
-                  'rounded-2xl transition-colors duration-200',
-                  'border-b-6 border-[var(--secondary-color-accent)] shadow-sm',
-                  'hover:cursor-pointer'
-                )}
-                onClick={() => playClick()}
-              >
-                <ArrowLeft size={20} />
-                <span className='whitespace-nowrap'>Back</span>
-              </button>
-            </Link>
+            <button
+              onClick={handleBack}
+              className={clsx(
+                'flex h-12 w-1/2 flex-row items-center justify-center gap-2 px-2 sm:px-6',
+                'bg-[var(--secondary-color)] text-[var(--background-color)]',
+                'rounded-2xl transition-colors duration-200',
+                'border-b-6 border-[var(--secondary-color-accent)] shadow-sm',
+                'hover:cursor-pointer'
+              )}
+            >
+              <ArrowLeft size={20} />
+              <span className='whitespace-nowrap'>Back</span>
+            </button>
 
             {/* Start button: Navigate to route if not already there, otherwise start game */}
             {!isGauntletRoute ? (

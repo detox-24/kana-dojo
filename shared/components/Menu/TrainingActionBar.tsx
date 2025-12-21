@@ -9,6 +9,8 @@ import { useClick } from '@/shared/hooks/useAudio';
 import { Play, Zap, Swords } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import GameModes from '@/shared/components/Menu/GameModes';
+
+// Gauntlet components with onCancel prop support
 import GauntletKana from '@/features/Kana/components/Gauntlet';
 import GauntletKanji from '@/features/Kanji/components/Gauntlet';
 import GauntletVocab from '@/features/Vocabulary/components/Gauntlet';
@@ -282,9 +284,15 @@ const TrainingActionBar: React.FC<ITopBarProps> = ({
       {/* Gauntlet Modal - shows Gauntlet component without route change */}
       {showGauntletModal && (
         <div className='fixed inset-0 z-[80] bg-[var(--background-color)]'>
-          {currentDojo === 'kana' && <GauntletKana />}
-          {currentDojo === 'kanji' && <GauntletKanji />}
-          {currentDojo === 'vocabulary' && <GauntletVocab />}
+          {currentDojo === 'kana' && (
+            <GauntletKana onCancel={() => setShowGauntletModal(false)} />
+          )}
+          {currentDojo === 'kanji' && (
+            <GauntletKanji onCancel={() => setShowGauntletModal(false)} />
+          )}
+          {currentDojo === 'vocabulary' && (
+            <GauntletVocab onCancel={() => setShowGauntletModal(false)} />
+          )}
         </div>
       )}
     </>

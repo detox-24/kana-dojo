@@ -10,7 +10,11 @@ import { Random } from 'random-js';
 
 const random = new Random();
 
-export default function GauntletKanji() {
+interface GauntletKanjiProps {
+  onCancel?: () => void;
+}
+
+const GauntletKanji: React.FC<GauntletKanjiProps> = ({ onCancel }) => {
   const selectedKanjiObjs = useKanjiStore(state => state.selectedKanjiObjs);
   const selectedKanjiSets = useKanjiStore(state => state.selectedKanjiSets);
   const selectedGameModeKanji = useKanjiStore(
@@ -75,5 +79,7 @@ export default function GauntletKanji() {
     supportsReverseMode: true
   };
 
-  return <Gauntlet config={config} />;
-}
+  return <Gauntlet config={config} onCancel={onCancel} />;
+};
+
+export default GauntletKanji;

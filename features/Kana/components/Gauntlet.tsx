@@ -8,7 +8,11 @@ import { flattenKanaGroups } from '@/features/Kana/lib/flattenKanaGroup';
 import { kana } from '@/features/Kana/data/kana';
 import Gauntlet, { type GauntletConfig } from '@/shared/components/Gauntlet';
 
-export default function GauntletKana() {
+interface GauntletKanaProps {
+  onCancel?: () => void;
+}
+
+const GauntletKana: React.FC<GauntletKanaProps> = ({ onCancel }) => {
   const kanaGroupIndices = useKanaStore(state => state.kanaGroupIndices);
   const selectedGameModeKana = useKanaStore(
     state => state.selectedGameModeKana
@@ -190,5 +194,7 @@ export default function GauntletKana() {
     supportsReverseMode: true
   };
 
-  return <Gauntlet config={config} />;
-}
+  return <Gauntlet config={config} onCancel={onCancel} />;
+};
+
+export default GauntletKana;

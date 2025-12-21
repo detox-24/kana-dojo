@@ -8,7 +8,11 @@ import Gauntlet, { type GauntletConfig } from '@/shared/components/Gauntlet';
 import { formatLevelsAsRanges } from '@/shared/lib/helperFunctions';
 import FuriganaText from '@/shared/components/text/FuriganaText';
 
-export default function GauntletVocab() {
+interface GauntletVocabProps {
+  onCancel?: () => void;
+}
+
+const GauntletVocab: React.FC<GauntletVocabProps> = ({ onCancel }) => {
   const selectedVocabObjs = useVocabStore(state => state.selectedVocabObjs);
   const selectedVocabSets = useVocabStore(state => state.selectedVocabSets);
   const selectedGameModeVocab = useVocabStore(
@@ -77,5 +81,7 @@ export default function GauntletVocab() {
     supportsReverseMode: true
   };
 
-  return <Gauntlet config={config} />;
-}
+  return <Gauntlet config={config} onCancel={onCancel} />;
+};
+
+export default GauntletVocab;

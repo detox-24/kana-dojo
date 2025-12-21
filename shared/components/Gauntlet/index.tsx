@@ -29,6 +29,7 @@ const random = new Random();
 
 interface GauntletProps<T> {
   config: GauntletConfig<T>;
+  onCancel?: () => void; // Optional callback for modal mode
 }
 
 /**
@@ -76,7 +77,7 @@ function generateQuestionQueue<T>(
   return queue;
 }
 
-export default function Gauntlet<T>({ config }: GauntletProps<T>) {
+export default function Gauntlet<T>({ config, onCancel }: GauntletProps<T>) {
   const router = useRouter();
   const pathname = usePathname();
   const isGauntletRoute = pathname?.includes('/gauntlet') ?? false;
@@ -540,6 +541,7 @@ export default function Gauntlet<T>({ config }: GauntletProps<T>) {
         setRepetitions={setRepetitions}
         pickModeSupported={pickModeSupported}
         onStart={handleStart}
+        onCancel={onCancel}
       />
     );
   }
