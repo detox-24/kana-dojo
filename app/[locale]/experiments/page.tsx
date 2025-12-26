@@ -9,12 +9,23 @@ import {
   Star,
   Keyboard,
   Brain,
-  Leaf
+  Leaf,
+  Ghost,
+  LucideIcon
 } from 'lucide-react';
 import clsx from 'clsx';
 import { useClick } from '@/shared/hooks/useAudio';
 
-const experiments = [
+type Experiment = {
+  name: string;
+  description: string;
+  href: string;
+  icon?: LucideIcon;
+  charIcon?: string;
+  color: string;
+};
+
+const experiments: Experiment[] = [
   {
     name: 'Zen Mode',
     description: 'Relax with animated decorations',
@@ -77,6 +88,20 @@ const experiments = [
     href: '/experiments/memory',
     icon: Brain,
     color: 'text-indigo-400'
+  },
+  {
+    name: 'Yokai Run',
+    description: 'Avoid the obstacles and run as far as you can!',
+    href: '/experiments/runner',
+    icon: Ghost,
+    color: 'text-slate-200'
+  },
+  {
+    name: 'Calligraphy',
+    description: 'Practice drawing Japanese characters, stroke by stroke',
+    href: '/calligraphy',
+    charIcon: '書',
+    color: 'text-amber-400'
   }
 ];
 
@@ -103,7 +128,13 @@ export default function ExperimentsPage() {
               'flex flex-col gap-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-color)] p-6 transition-all duration-250 hover:border-[var(--main-color)]'
             )}
           >
-            <exp.icon size={32} className={exp.color} />
+            {exp.charIcon ? (
+              <span className={clsx('text-2xl', exp.color)}>
+                {exp.charIcon}
+              </span>
+            ) : exp.icon ? (
+              <exp.icon size={32} className={exp.color} />
+            ) : null}
             <div>
               <h2 className='text-lg text-[var(--main-color)]'>{exp.name}</h2>
               <p className='text-sm text-[var(--secondary-color)]'>
