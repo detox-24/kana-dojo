@@ -11,9 +11,8 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const nextConfig: NextConfig = {
   // Performance optimizations
-  reactStrictMode: false, // Disable in dev for faster startup (enable in production)
-  // swcMinify removed - enabled by default in Next.js 13+
-  compress: true, // Enable gzip/brotli compression
+  reactStrictMode: true,
+  compress: false, // Let Vercel handle compression
   poweredByHeader: false, // Remove X-Powered-By header for security
   generateEtags: true, // Generate ETags for better caching
 
@@ -27,22 +26,8 @@ const nextConfig: NextConfig = {
 
   // Experimental features for better performance
   experimental: {
-    // Use optimized package imports
-    optimizePackageImports: [
-      'framer-motion',
-      'lucide-react',
-      '@fortawesome/react-fontawesome',
-      '@fortawesome/free-solid-svg-icons',
-      '@fortawesome/free-regular-svg-icons',
-      '@fortawesome/free-brands-svg-icons',
-      '@radix-ui/react-select',
-      'zustand',
-      'clsx',
-      'class-variance-authority',
-      'wanakana'
-    ],
     // Faster builds
-    webpackBuildWorker: true
+    // webpackBuildWorker: true
   },
 
   // Turbopack configuration (moved from experimental.turbo in Next.js 15)
@@ -97,8 +82,28 @@ const nextConfig: NextConfig = {
         ]
       },
       {
-        // JSON data files (kanji, vocab, facts) - cache for 1 week
-        source: '/:path*.json',
+        // Kanji JSON data files - cache for 1 week
+        source: '/kanji/:path*.json',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      {
+        // Vocab JSON data files - cache for 1 week
+        source: '/vocab/:path*.json',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=604800, stale-while-revalidate=86400'
+          }
+        ]
+      },
+      {
+        // Japan facts JSON - cache for 1 week
+        source: '/japan-facts.json',
         headers: [
           {
             key: 'Cache-Control',
