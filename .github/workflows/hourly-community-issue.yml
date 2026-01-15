@@ -139,7 +139,7 @@ jobs:
               themes[themeIndex].issued = true;
               fs.writeFileSync(themeBacklogPath, JSON.stringify(themes, null, 2));
               
-            } else {
+            } else if (nextType === 'fact') {
               // Skip items that are already issued OR completed
               item = facts.find(function(f) { return !f.issued && !f.completed; });
               
