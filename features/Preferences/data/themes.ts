@@ -1107,19 +1107,27 @@ const baseThemeSets: BaseThemeGroup[] = [
         id: 'castle-gate',
         backgroundColor: 'oklch(23.0% 0.018 75.0 / 1)',
         mainColor: 'oklch(70.0% 0.055 80.0 / 1)',
-          secondaryColor: 'oklch(60.0% 0.145 25.0 / 1)'},{
+        secondaryColor: 'oklch(60.0% 0.145 25.0 / 1)',
+      },
+      {
         id: 'onsen-steam',
         backgroundColor: 'oklch(25.0% 0.022 210.0 / 1)',
         mainColor: 'oklch(85.0% 0.085 215.0 / 1)',
-        secondaryColor: 'oklch(70.0% 0.065 195.0 / 1)'},{
+        secondaryColor: 'oklch(70.0% 0.065 195.0 / 1)',
+      },
+      {
         id: 'sunset-train',
         backgroundColor: 'oklch(22.0% 0.052 45.0 / 1)',
         mainColor: 'oklch(88.0% 0.165 65.0 / 1)',
-        secondaryColor: 'oklch(72.0% 0.185 35.0 / 1)'},{
+        secondaryColor: 'oklch(72.0% 0.185 35.0 / 1)',
+      },
+      {
         id: 'lavender-fields',
         backgroundColor: 'oklch(19.0% 0.058 290.0 / 1)',
         mainColor: 'oklch(70.0% 0.165 295.0 / 1)',
-        secondaryColor: 'oklch(80.0% 0.125 285.0 / 1)'},{
+        secondaryColor: 'oklch(80.0% 0.125 285.0 / 1)',
+      },
+      {
         id: 'bamboo-forest',
         backgroundColor: 'oklch(21.0% 0.045 155.0 / 1)',
         mainColor: 'oklch(70.0% 0.145 150.0 / 1)',
