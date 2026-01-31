@@ -161,13 +161,12 @@
   "character": "Charlotte Linlin (Big Mom)"
 },
   {
-  "anime": "JoJo's Bizarre Adventure: Stardust Crusaders",
-  "character": "Noriaki Kakyoin",
-  "quote": {
     "japanese": "レロレロレロレロ",
     "romaji": "Rero rero rero rero",
-    "english": "Rero rero rero rero."
-  }
+    "english": "Rero rero rero rero.",
+"anime": "JoJo's Bizarre Adventure: Stardust Crusaders",
+  "character": "Noriaki Kakyoin"
+  
 },
   {
     "japanese": "破壊",
