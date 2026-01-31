@@ -189,5 +189,33 @@
     "english": "Does a machine like yourself ever experience fear?",
     "anime": "Dragon Ball Z",
     "character": "Vegeta"
+  },
+  {
+    "japanese": "戦え",
+    "romaji": "Tatakae!",
+    "english": "Fight!",
+    "anime": "Attack On TItan",
+    "character": "Eren Yeager"
+  },
+  {
+    "japanese": "だってばよ",
+    "romaji": "Dattebayo!",
+    "english": "You know!",
+    "anime": "Naruto",
+    "character": "Naruto Uzumaki"
+  },
+  {
+    "japanese": "ようこそ私のソウル・ソサエティ",
+    "romaji": "Yokoso Watashi no Soul Society",
+    "english": "Welcome to my Soul Society",
+    "anime": "Bleach",
+    "character": "Sosuke Aizen"
+  },
+  {
+    "japanese": "現実を見ろ",
+    "romaji": "Genjitsu o miro",
+    "english": "Wake up to reality!",
+    "anime": "Naruto Shippuden",
+    "character": "Madara Uchiha"
   }
 ]
